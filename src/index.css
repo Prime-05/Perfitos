@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Cafe Francoise";
+  src: url("/fonts/CafeFrancoise.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Semplicita";
+  src: url("/fonts/Semplicita.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: "Semplicita", sans-serif;
+  color: #f3eee5;
+  background: #171512;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #171512;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+
