@@ -19,6 +19,7 @@ export function TransitionProvider({ children }) {
 
       // Give React time to render the new page
       setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         setRevealing(true);
 
         // Curtain has finished leaving
@@ -49,6 +50,7 @@ export function TransitionLink({
   to,
   children,
   className = "",
+  ...props
 }) {
   const { transitionTo } = useContext(TransitionContext);
 
@@ -56,6 +58,7 @@ export function TransitionLink({
     <a
       href={to}
       className={className}
+      {...props}
       onClick={(event) => {
         event.preventDefault();
         transitionTo(to);

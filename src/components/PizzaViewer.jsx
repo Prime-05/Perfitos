@@ -8,13 +8,38 @@ import {
   useGLTF,
 } from "@react-three/drei";
 
+/* Toppings that load their own .glb file */
 const TOPPING_MODEL_PATHS = {
   pepper: "/models/pepper.glb",
   mushroom: "/models/mushroom.glb",
   tomato: "/models/tomato.glb",
 };
 
-function PizzaModel({ modelPath, activeStep, builderMode }) {
+/* Toppings that already exist as meshes inside Pizza_unmeshed.glb.
+   Each id maps to words found in the mesh name. */
+const MESH_TOPPINGS = {
+  salami: ["salami"],
+  basil: ["leaves", "basil"],
+  cheese: ["cheese"],
+};
+
+/* Original tomato mesh in the model: always hidden in the builder,
+   because the Tomato option loads tomato.glb instead. */
+const ALWAYS_HIDDEN = ["tomatoes"];
+
+/* Name of a mesh plus all its parents, so it matches even if the
+   keyword is on a parent group instead of the mesh itself */
+function getFullName(object) {
+  let name = "";
+  let node = object;
+  while (node) {
+    name += " " + (node.name || "").toLowerCase();
+    node = node.parent;
+  }
+  return name;
+}
+
+function PizzaModel({ modelPath, builderMode, meshToppings }) {
   const { scene } = useGLTF(modelPath);
 
   const clonedScene = useMemo(
@@ -23,34 +48,27 @@ function PizzaModel({ modelPath, activeStep, builderMode }) {
   );
 
   useEffect(() => {
+    if (!builderMode) return;
+
     clonedScene.traverse((object) => {
       if (!object.isMesh) return;
 
-      const name = object.name.toLowerCase();
+      const name = getFullName(object);
 
-      if (!builderMode) return;
+      // console.log("MESH:", name); // uncomment to see every mesh name
 
-      // Original ingredients from the unmeshed pizza
-      const isOriginalTopping =
-        name.includes("salami") ||
-        name.includes("tomatoes") ||
-        name.includes("leaves") ||
-        name.includes("basil");
-
-      const isCheese = name.includes("cheese");
-
-      // Dough stage: hide original toppings and cheese.
-      // Toppings stage: reveal original toppings.
-      // Add-ons stage: reveal the original cheese mesh.
-      if (isOriginalTopping) {
-        object.visible = activeStep >= 2;
+      if (ALWAYS_HIDDEN.some((word) => name.includes(word))) {
+        object.visible = false;
+        return;
       }
 
-      if (isCheese) {
-        object.visible = activeStep >= 3;
+      for (const [id, words] of Object.entries(MESH_TOPPINGS)) {
+        if (words.some((word) => name.includes(word))) {
+          object.visible = meshToppings.includes(id);
+        }
       }
     });
-  }, [clonedScene, activeStep, builderMode]);
+  }, [clonedScene, builderMode, meshToppings]);
 
   return (
     <primitive
@@ -93,9 +111,10 @@ export default function PizzaViewer({
   toppings = [],
   builderMode = false,
   modelPath = "/models/Pizza.glb",
-  activeStep = 0,
-  showBaseCheese = false,
+  
 }) {
+     const meshToppings = toppings.filter((id) => MESH_TOPPINGS[id]);
+     const modelToppings = toppings.filter((id) => TOPPING_MODEL_PATHS[id]);
   return (
     <div className="pizza-viewer">
       {item?.name && !builderMode && (
@@ -126,13 +145,12 @@ export default function PizzaViewer({
 
         <PizzaModel
           modelPath={modelPath}
-          builderMode={builderMode}
-          activeStep={activeStep}
-          showBaseCheese={showBaseCheese}
-        />
+            builderMode={builderMode}
+           meshToppings={meshToppings}
+           />
 
         <group scale={2.5} position={[0, -0.9, 0]}>
-          {toppings.map((id) => (
+          {modelToppings.map((id) => (
             <ToppingModel key={id} id={id} />
           ))}
         </group>

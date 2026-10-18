@@ -101,7 +101,7 @@ export default function Menu() {
 
         <section className="menu-page-header">
 
-          <span>02 / PERFITOS</span>
+          <span>02 / Perfitos</span>
 
           <h1>
             MENU
@@ -135,7 +135,7 @@ export default function Menu() {
 
           </aside>
 
-          <div className="menu-items">
+          <div className="menu-items" key={category}>
 
             {categories[category].map((item) => (
 

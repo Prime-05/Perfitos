@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import PizzaViewer from "../components/PizzaViewer";
+import { TransitionLink } from "../components/PageTransition";
 
 const steps = [
     { number: "01", title: "Dough" },
@@ -19,12 +20,16 @@ const sauceOptions = [
     { id: "tomato", name: "Classic tomato", description: "Rich Italian tomato flavour" },
     { id: "spicy", name: "Spicy tomato", description: "A little heat and herbs" },
     { id: "pesto", name: "Herb pesto", description: "Fresh and aromatic" },
+   
 ];
 
 const toppingOptions = [
     { id: "pepper", name: "Bell pepper", description: "Fresh and colourful" },
     { id: "mushroom", name: "Mushroom", description: "Earthy and savoury" },
     { id: "tomato", name: "Tomato", description: "Juicy and fresh" },
+    { id: "salami", name: "Salami", description: "Spicy and savoury" },
+    { id: "basil", name: "Basil leaves", description: "Fresh and aromatic" },
+    { id: "cheese", name: "Mozzarella", description: "Creamy and melted" },
 ];
 
 const cheeseOptions = [
@@ -103,17 +108,17 @@ export default function PizzaBuilder() {
 
     return (
         <main className="pizza-builder-page">
-            <header className="builder-header">
-                <a href="/" className="builder-logo">
-                    PERFITOS<span>.</span>
-                </a>
+           <header className="builder-header">
+    <TransitionLink to="/" className="builder-logo">
+        Perfitos<span>.</span>
+    </TransitionLink>
 
-                <span className="builder-header-center">THE PIZZA LAB</span>
+            <span className="builder-header-center">THE PIZZA LAB</span>
 
-                <a href="/menu" className="builder-exit">
-                    EXIT ↗
-                </a>
-            </header>
+             <TransitionLink to="/menu" className="builder-exit">
+                MENU ↗
+             </TransitionLink>
+           </header>
 
             <section className="builder-intro">
                 <p className="builder-eyebrow">YOUR KITCHEN. YOUR RULES.</p>
@@ -162,7 +167,7 @@ export default function PizzaBuilder() {
                             toppings={toppings}
                             builderMode
                             modelPath="/models/Pizza_unmeshed.glb"
-                            showBaseCheese={cheeses.length > 0}
+                            
                         />
                         <div className="preview-caption">
                             <span className="preview-caption-dot" />

@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-
 export default function Hero() {
+  const scrollToNext = (event) => {
+    const hero = event.currentTarget.closest(".hero");
+    hero?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="hero">
 
@@ -12,10 +15,7 @@ export default function Hero() {
         playsInline
         preload="metadata"
       >
-        <source
-          src="/video/hero.mp4"
-          type="video/mp4"
-        />
+        <source src="/video/hero.mp4" type="video/mp4" />
       </video>
 
       <div className="hero-overlay" />
@@ -26,9 +26,7 @@ export default function Hero() {
           EST. 2026 / MUMBAI
         </p>
 
-        <h1>
-          PERFITOS
-        </h1>
+        <h1>PERFITOS</h1>
 
         <div className="hero-bottom">
 
@@ -38,23 +36,14 @@ export default function Hero() {
             REIMAGINED.
           </p>
 
-          <div className="hero-actions">
-
-            <Link to="/gallery">
-              GALLERY
-              <span>↓</span>
-            </Link>
-
-            <Link to="/menu">
-              MENU
-              <span>↗</span>
-            </Link>
-
-          </div>
-
-          <p className="hero-scroll">
+          <button
+            type="button"
+            className="hero-scroll"
+            onClick={scrollToNext}
+          >
             SCROLL TO DISCOVER
-          </p>
+            <span aria-hidden="true">↓</span>
+          </button>
 
         </div>
 

@@ -33,7 +33,7 @@ export default function Home() {
             <TransitionLink
               to="/gallery"
               className="home-explore-card"
-              viewTransition
+              
             >
               <img
                 src="/images/gallery.png"
@@ -52,7 +52,7 @@ export default function Home() {
             <TransitionLink
               to="/menu"
               className="home-explore-card"
-              viewTransition
+              
             >
               <img
                 src="/images/menu.png"

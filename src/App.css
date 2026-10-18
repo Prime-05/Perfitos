@@ -92,11 +92,15 @@
 }
 
 .nav-logo {
-  font-family: "Cafe Francoise", serif;
+  font-family: "Padle Candy", cursive;
 
-  font-size: 28px;
+  font-size: 40px;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.4em;
+
+  color: #8a0303;
+
+  text-shadow: 0 0 5px #f3eee5;
 }
 
 .nav-right {
@@ -1378,6 +1382,27 @@
 
 .menu-items {
   border-top: 1px solid var(--line);
+
+  max-height: min(55vh, 460px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 12px;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(243, 238, 229, 0.35) transparent;
+}
+
+.menu-items::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-items::-webkit-scrollbar-thumb {
+  background: rgba(243, 238, 229, 0.35);
+  border-radius: 2px;
+}
+
+.menu-items::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .menu-item {
@@ -1971,9 +1996,10 @@
 
 .builder-header {
   min-height: 76px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   border-bottom: 1px solid var(--pb-border);
 }
 
@@ -1981,9 +2007,11 @@
   width: fit-content;
   color: var(--pb-text);
   text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.06em;
+  font-family: "Padle Candy", cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
 
 .builder-logo span {
@@ -1997,12 +2025,11 @@
 }
 
 .builder-header-center {
-  text-align: center;
+  text-align: left;
   color: var(--pb-muted);
 }
 
 .builder-exit {
-  justify-self: end;
   color: var(--pb-text);
   text-decoration: none;
 }
@@ -2024,7 +2051,7 @@
 .controls-heading h2,
 .builder-review h2 {
   margin: 0;
-  font-family: "Cafe Francoise", Georgia, serif;
+  font-family: "Candy Script", Georgia, serif;
   font-weight: 400;
   line-height: 1.08;
 }
@@ -2600,5 +2627,123 @@
   .pizza-builder-page *::before,
   .pizza-builder-page *::after {
     transition: none !important;
+  }
+}
+
+/* Hero: scroll to discover button */
+
+.hero-bottom {
+  display: grid;
+   grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+}
+
+.hero-scroll {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 12px;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-align: center;
+  opacity: 0.85;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.hero-scroll:hover {
+  opacity: 1;
+}
+
+.hero-scroll span {
+  font-size: 18px;
+  animation: hero-scroll-bob 1.5s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@media (max-width: 700px) {
+  .hero-bottom {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+}
+
+.nav-logo {
+  font-family: "Padle Candy", cursive;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  line-height: 1;
+
+  color: #8a0303;
+  -webkit-text-stroke: 10px currentColor;
+
+  transition: color 0.45s ease;
+}
+
+/* Footer heading + info (matches Footer.jsx class names) */
+
+.footer-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  margin-bottom: 160px;
+}
+
+.footer-heading span {
+  margin-bottom: 20px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+.footer-information {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(243, 238, 229, 0.25);
+}
+
+.footer-information small {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.55;
+}
+
+.footer-information p {
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .footer-heading {
+    margin-bottom: 100px;
+  }
+
+  .footer-information {
+    grid-template-columns: 1fr 1fr;
+    gap: 45px 20px;
+  }
+}
+
+.nav-logo {
+  -webkit-text-stroke: 1px currentColor;
+}
+
+@media (max-width: 700px) {
+  .menu-items {
+    max-height: 380px;
   }
 }

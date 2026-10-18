@@ -221,6 +221,9 @@ export default function OurImpact() {
   const chapterRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const frameRef = useRef(null);          // ← add
+  const [inView, setInView] = useState(false);
+
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return undefined;
 
@@ -236,6 +239,18 @@ export default function OurImpact() {
     );
 
     chapterRefs.current.forEach((chapter) => chapter && observer.observe(chapter));
+    return () => observer.disconnect();
+  }, []);
+   
+    useEffect(() => {
+    if (typeof IntersectionObserver === "undefined" || !frameRef.current) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.4 }
+    );
+
+    observer.observe(frameRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -270,18 +285,19 @@ export default function OurImpact() {
           ))}
         </div>
 
-        <div className="impact-visual-sticky" aria-label={`Illustration: ${activeStory.title}`}>
-          <SceneVisual type={activeStory.visual} />
-          <div className="impact-progress" aria-hidden="true">
+             <div
+               className="impact-visual-sticky"
+                ref={frameRef}
+               aria-label={`Illustration: ${activeStory.title}`}
+>
+                {inView && <SceneVisual type={activeStory.visual} />}
+              <div className="impact-progress" aria-hidden="true">
             <span style={{ width: `${((activeIndex + 1) / IMPACT_STORIES.length) * 100}%` }} />
           </div>
         </div>
       </div>
 
-      <div className="impact-closing">
-        <span>AND WE’RE JUST GETTING STARTED</span>
-        <p>Here’s to the next slice.</p>
-      </div>
+    
     </section>
   );
 }
