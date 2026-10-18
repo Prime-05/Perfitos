@@ -1,8 +1,9 @@
 import { TransitionLink } from "../components/PageTransition";
-
+import OurImpact from "../components/Ourimpact";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
+import SalesStory from "../components/Story";
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
 
       <main>
         <Hero />
+
+        <SalesStory />
 
         <section className="home-explore">
 
@@ -67,6 +70,7 @@ export default function Home() {
           </div>
 
         </section>
+        <OurImpact />
       </main>
 
       <Footer />

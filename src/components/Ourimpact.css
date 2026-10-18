@@ -1,0 +1,686 @@
+/* Perfitos Our Impact — uses the existing Perfitos cream, red and display fonts. */
+.our-impact {
+  --impact-cream: var(--cream, #f3eee5);
+  --impact-dark: var(--dark, #171512);
+  --impact-red: var(--red, #8e2f24);
+  background: var(--impact-cream);
+  color: var(--impact-dark);
+  width: 100%;
+  max-width: 100%;
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+.our-impact *,
+.our-impact *::before,
+.our-impact *::after {
+  box-sizing: border-box;
+}
+
+.impact-opening {
+  min-height: 82svh;
+  padding: clamp(110px, 16vw, 220px) clamp(20px, 5vw, 76px) 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  background: var(--impact-red);
+  color: var(--impact-cream);
+}
+
+.impact-kicker,
+.impact-scroll-cue,
+.impact-chapter-meta,
+.impact-closing>span {
+  font-size: 10px;
+  letter-spacing: .16em;
+  line-height: 1.5;
+}
+
+.impact-kicker {
+  opacity: .72;
+}
+
+.impact-opening h2 {
+  margin: 48px 0 28px;
+  max-width: 1200px;
+  font-family: "Cafe Francoise", serif;
+  font-size: clamp(76px, 13.5vw, 205px);
+  font-weight: 400;
+  line-height: .75;
+  letter-spacing: -.045em;
+}
+
+.impact-opening h2 em {
+  color: #d8b59b;
+  font-style: normal;
+}
+
+.impact-opening>p {
+  max-width: 340px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.impact-scroll-cue {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(50px, 9vw, 110px);
+  opacity: .8;
+}
+
+.impact-scroll-cue span {
+  font-size: 20px;
+  animation: impact-bob 1.5s ease-in-out infinite;
+}
+
+.impact-story-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr);
+  gap: clamp(32px, 6vw, 90px);
+  padding: 0 clamp(20px, 5vw, 76px);
+  background: var(--impact-cream);
+  width: 100%;
+  min-width: 0;
+}
+
+.impact-chapters {
+  min-width: 0;
+}
+
+.impact-chapter {
+  min-height: 88vh;
+  padding: 15vh 0 13vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: .38;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .65s cubic-bezier(.2, .7, 0, 1);
+  border-bottom: 1px solid rgba(23, 21, 18, .16);
+}
+
+.impact-chapter.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.impact-chapter-meta {
+  display: flex;
+  gap: 24px;
+  opacity: .58;
+}
+
+.impact-chapter h3 {
+  margin: 34px 0 24px;
+  max-width: 560px;
+  font-family: "Cafe Francoise", serif;
+  font-size: clamp(52px, 6.4vw, 98px);
+  font-weight: 400;
+  line-height: .82;
+  letter-spacing: -.035em;
+}
+
+.impact-description {
+  max-width: 390px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.impact-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 44px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(23, 21, 18, .24);
+}
+
+.impact-stat strong {
+  font-family: "Cafe Francoise", serif;
+  font-weight: 400;
+  font-size: clamp(38px, 5vw, 70px);
+  line-height: .9;
+  color: var(--impact-red);
+}
+
+.impact-stat span,
+.impact-comparison {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.impact-comparison {
+  margin: 18px 0 0;
+  font-weight: 600;
+}
+
+.impact-note {
+  margin: 22px 0 0;
+  max-width: 380px;
+  font-size: 10px;
+  line-height: 1.6;
+  opacity: .55;
+}
+
+.impact-visual-sticky {
+  position: sticky;
+  top: 8vh;
+  align-self: start;
+  height: 84vh;
+  min-height: 540px;
+  max-height: 850px;
+  margin: 8vh 0;
+  padding: 0;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #e7dfd2;
+  color: var(--impact-dark);
+  isolation: isolate;
+}
+
+.impact-visual-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(16px, 2vw, 28px);
+  animation: impact-art-in .65s cubic-bezier(.2, .7, 0, 1) both;
+}
+
+.impact-svg {
+  width: 100%;
+  max-height: 100%;
+  overflow: visible;
+}
+
+.impact-art-sauce .impact-bottle {
+  animation: impact-bottle-in .6s cubic-bezier(.2, .7, 0, 1) both;
+}
+
+.impact-art-toppings .impact-topping-one {
+  animation: impact-topping-in .7s .05s both;
+  transform-origin: center;
+}
+
+.impact-art-toppings .impact-topping-two {
+  animation: impact-topping-in .7s .2s both;
+  transform-origin: center;
+}
+
+/* Elephant + dough composition */
+.impact-comparison {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: grid;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 22px);
+  overflow: hidden;
+}
+
+.impact-dough-scene {
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.5fr);
+}
+
+.impact-comparison>img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+  min-width: 0;
+}
+
+.impact-side-object {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.impact-side-object>img {
+  display: block;
+  width: 100%;
+  max-height: 190px;
+  object-fit: contain;
+}
+
+.impact-side-object>span {
+  font-size: 9px;
+  letter-spacing: .16em;
+  font-weight: 700;
+  text-align: center;
+  color: #777064;
+}
+
+.impact-dough-object {
+  animation: doughReveal .8s ease-out both;
+  animation-delay: .2s;
+}
+
+.impact-dough-illustration {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  max-height: 180px;
+  height: auto;
+}
+
+.impact-elephant {
+  width: 100%;
+  transform-origin: left center;
+}
+
+.elephant-enter-down {
+  animation: elephantRevealDown 1s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.elephant-enter-up {
+  animation: elephantRevealUp 1s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* Ingredient images: transparent PNG/WebP files work best. */
+.impact-ingredient-photos {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.impact-ingredient-photos img {
+  width: 28%;
+  max-width: 160px;
+  height: min(48%, 260px);
+  object-fit: contain;
+  animation: ingredientReveal .7s ease both;
+}
+
+.impact-ingredient-photos img:nth-child(2) {
+  animation-delay: .1s;
+}
+
+.impact-ingredient-photos img:nth-child(3) {
+  animation-delay: .2s;
+}
+
+/* Pizza stack on the left (bottom-aligned), Burj Khalifa fitted to the right. */
+.impact-burj-scene {
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
+  align-items: end;
+}
+
+.impact-burj-scene .impact-burj {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.impact-pizza-object {
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.impact-pizza-stack {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 190px;
+  padding-top: 0;
+}
+
+.impact-pizza {
+  flex: 0 0 18px;
+  position: relative;
+  display: block;
+  width: clamp(60px, 8vw, 110px);
+  height: 18px;
+  margin-top: -5px;
+  border: 3px solid #9d6336;
+  border-radius: 50%;
+  background: #d9ad6c;
+  box-shadow: 0 3px 0 #b87a43;
+  animation: pizzaStackIn .5s ease-out both;
+  animation-delay: calc(var(--pizza-index) * .1s);
+}
+
+.impact-pizza>span {
+  position: absolute;
+  inset: 3px 7px;
+  border-radius: 50%;
+  background: #a94431;
+}
+
+.impact-progress {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(23, 21, 18, .15);
+}
+
+.impact-progress span {
+  display: block;
+  height: 100%;
+  background: var(--impact-red);
+  transition: width .55s ease;
+}
+
+.impact-closing {
+  min-height: 60vh;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--impact-dark);
+  color: var(--impact-cream);
+}
+
+.impact-closing>span {
+  opacity: .6;
+}
+
+.impact-closing p {
+  margin: 28px 0 0;
+  font-family: "Cafe Francoise", serif;
+  font-size: clamp(60px, 11vw, 155px);
+  line-height: .85;
+}
+
+@keyframes impact-bob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes impact-art-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes impact-bottle-in {
+  from {
+    transform: translateY(18px);
+    opacity: .1;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes impact-topping-in {
+  from {
+    opacity: .1;
+    scale: .85;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes elephantRevealDown {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes elephantRevealUp {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes doughReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes burjRevealDown {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: scale(.88);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes pizzaStackIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ingredientReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 800px) {
+  .impact-opening {
+    min-height: 78svh;
+    padding-top: 130px;
+    padding-bottom: 55px;
+  }
+
+  .impact-opening h2 {
+    font-size: clamp(66px, 15vw, 120px);
+    margin-top: 40px;
+  }
+
+  .impact-story-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .impact-chapter {
+    min-height: 0;
+    padding: 70px 0 52px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .impact-chapter h3 {
+    font-size: clamp(54px, 13vw, 88px);
+    margin-top: 26px;
+  }
+
+  .impact-description {
+    max-width: 560px;
+  }
+
+  .impact-stat {
+    margin-top: 30px;
+  }
+
+  .impact-stat strong {
+    font-size: clamp(42px, 11vw, 66px);
+  }
+
+  .impact-note {
+    max-width: 520px;
+  }
+
+  .impact-visual-sticky {
+    position: relative;
+    top: auto;
+    order: -1;
+    height: min(100vw, 480px);
+    min-height: 300px;
+    max-height: none;
+    margin: 24px 0 0;
+  }
+
+  .impact-visual-art {
+    padding: 12px;
+  }
+
+  .impact-dough-scene {
+    grid-template-columns: minmax(0, .72fr) minmax(0, 1.35fr);
+    gap: 6px;
+  }
+
+  .impact-dough-illustration {
+    max-height: 120px;
+  }
+
+  .impact-burj-scene {
+    grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
+    gap: 4px;
+  }
+
+  .impact-burj-scene .impact-burj {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .impact-pizza-stack {
+    min-height: 145px;
+  }
+
+  .impact-pizza {
+    width: clamp(52px, 16vw, 76px);
+    height: 15px;
+    flex-basis: 15px;
+  }
+
+  .impact-ingredient-photos {
+    gap: 5px;
+  }
+
+  .impact-ingredient-photos img {
+    width: 30%;
+    height: 65%;
+  }
+
+  .impact-closing {
+    min-height: 45vh;
+  }
+}
+
+@media (max-width: 420px) {
+  .impact-opening h2 {
+    font-size: 17vw;
+  }
+
+  .impact-kicker,
+  .impact-scroll-cue,
+  .impact-chapter-meta,
+  .impact-closing>span {
+    font-size: 9px;
+  }
+
+  .impact-visual-sticky {
+    min-height: 280px;
+  }
+
+  .impact-chapter {
+    padding-top: 55px;
+    padding-bottom: 42px;
+  }
+
+  .impact-side-object>span {
+    font-size: 8px;
+  }
+
+  .impact-dough-illustration {
+    max-height: 95px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .our-impact *,
+  .our-impact *::before,
+  .our-impact *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
